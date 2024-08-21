@@ -1,0 +1,27 @@
+#create docker image
+services:
+  dev-database:
+    image: postgres:16.4
+    container_name: dev-database 
+    ports: 
+      - 5434:5432 #{port in host(MyPC): {port in Container}}
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Abcd123456789
+      POSTGRES_DB: testdb
+    networks:
+      - nestjs-network
+networks:
+  nestjs-network:
+
+#Create container,network,...from "docker compose" file:
+#docker ps: view co container chay
+#-d: deamon/background mode (detach mode: che do ngam)
+#docker compose up -d
+#if you want to start only specified services/container;
+#docker compose up -d dev-database -d
+#docker compose down (tim rollback, remove neu muon lam lai)
+#how to remove containers 
+#docker compose down
+#how to remove containers (chi tiet)
+#docker compose rm dev-database --stop --force --volumes
